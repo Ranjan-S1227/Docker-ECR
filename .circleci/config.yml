@@ -17,9 +17,9 @@ jobs:
 
 workflows:
   version: 2
-  build_and_deploy:
+  deploy:
     jobs:
-      - build_and_push
+      - build_and_push_IMG
 
 
 #      aws ecr get-login-password --region $AWS_DEFAULT_REGION | 
