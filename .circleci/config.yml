@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker:  # This step ensures Docker CLI is installed and configured.
-          version: 24.0.7  # Specify Docker version
+          version: 19.03.13  # Specify Docker version
       - run:
           name: Build Docker Image
           command: |
