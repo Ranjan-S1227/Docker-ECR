@@ -3,10 +3,11 @@ version: 2.1
 jobs:
   build_and_push_IMG:
     docker:
-      - image: alpine/k8s:1.26.13 
+      - image: cimg/base:stable  # This is a CircleCI image with basic tools installed.
     steps:
       - checkout
-
+      - setup_remote_docker:  # This step ensures Docker CLI is installed and configured.
+          version: 24.0.7  # Specify Docker version
       - run:
           name: Build Docker Image
           command: |
