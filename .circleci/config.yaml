@@ -1,0 +1,27 @@
+version: 2.1
+
+jobs:
+  build_and_push_IMG:
+    docker:
+      - image: cimg/python:3.8  # or any other image suitable for your project
+    steps:
+      - checkout
+
+      - run:
+          name: Build Docker Image
+          command: |
+            aws ecr get-login-password $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 339713019591.dkr.ecr.ap-southeast-2.amazonaws.com
+            docker build -t k8-v2-demo-app:latest .
+            docker push 339713019591.dkr.ecr.ap-southeast-2.amazonaws.com/k8-v2-demo-app:latest
+
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build_and_push
+
+
+#      aws ecr get-login-password --region $AWS_DEFAULT_REGION | 
+      #echo "Creating Docker registry secret..."
+      #kubectl create secret docker-registry ecr-secret --docker-server=339713019591.dkr.ecr.ap-southeast-2.amazonaws.com --docker-username=AWS --docker-password="${PASSWORD}" 
