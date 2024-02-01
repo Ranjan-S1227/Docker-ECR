@@ -3,11 +3,15 @@ version: 2.1
 jobs:
   build_and_push_IMG:
     docker:
-      - image: alpine/k8s:1.26.13  # This is a CircleCI image with basic tools installed.
+      - image: cimg/base:stable  # This is a CircleCI image with basic tools installed.
     steps:
       - checkout
       - setup_remote_docker:  # This step ensures Docker CLI is installed and configured.
           version: 19.03.13  # Specify Docker version
+      - run:
+          name: Install AWS CLI
+          command: |
+            sudo apt-get update && sudo apt-get install awscli -y
       - run:
           name: Build Docker Image
           command: |
