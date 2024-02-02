@@ -7,15 +7,16 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker:  # This step ensures Docker CLI is installed and configured.
-          version: 20.10.17  # Specify Docker version
+          version: 20.10.17  #  Docker version
       - run:
           name: Install AWS CLI
           command: |
             sudo apt-get update && sudo apt-get install awscli -y
+            aws --version  
       - run:
           name: Build Docker Image
           command: |
-            aws ecr get-login-password $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 339713019591.dkr.ecr.ap-southeast-2.amazonaws.com
+            aws ecr get-login-password $AWS_DEFAULT_REGION | winpty docker login --username AWS --password-stdin 339713019591.dkr.ecr.ap-southeast-2.amazonaws.com
             docker build -t k8-v2-demo-app:latest .
             docker push 339713019591.dkr.ecr.ap-southeast-2.amazonaws.com/k8-v2-demo-app:latest
 
