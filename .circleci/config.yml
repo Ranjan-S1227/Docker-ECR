@@ -22,6 +22,7 @@ jobs:
           command: |
             docker login -u AWS -p $(aws ecr get-login-password --region $AWS_DEFAULT_REGION) 339713019591.dkr.ecr.ap-southeast-2.amazonaws.com
             docker build -t k8-v2-demo-app:latest .
+            docker tag k8-v2-demo-app:latest 339713019591.dkr.ecr.ap-southeast-2.amazonaws.com/k8-v2-demo-app:latest
             docker push 339713019591.dkr.ecr.ap-southeast-2.amazonaws.com/k8-v2-demo-app:latest
 
 
