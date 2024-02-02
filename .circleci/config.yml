@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build_and_push_IMG:
     docker:
-      - image: alpine/k8s
+      - image: cimg/base:2022.06
     steps:
       - checkout
       - setup_remote_docker:  # This step ensures Docker CLI is installed and configured.
