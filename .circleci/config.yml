@@ -16,7 +16,7 @@ jobs:
       - run:
           name: Build Docker Image
           command: |
-            aws ecr get-login-password $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 339713019591.dkr.ecr.ap-southeast-2.amazonaws.com
+            aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 339713019591.dkr.ecr.ap-southeast-2.amazonaws.com
             docker build -t k8-v2-demo-app:latest .
             docker push 339713019591.dkr.ecr.ap-southeast-2.amazonaws.com/k8-v2-demo-app:latest
 
